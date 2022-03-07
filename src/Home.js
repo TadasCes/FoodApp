@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
-import Menu from "./Menu";
-import Categories from "./Categories";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import Menu from "./food/Menu";
 import items from "./data";
-import Navbar from "./Navbar";
+import Navbar from "./navbar/Navbar";
+import { useEffect } from "react";
 
 function Home() {
-  const [finalResult, setFinalResult] = useState(items);
+  const [finalResult, setFinalResult] = useState([]);
+  const getAllFood = useSelector((state) => state.foodState);
 
   return (
     <>
@@ -16,7 +18,7 @@ function Home() {
             <div className="underline"></div>
           </div>
           <Navbar finalResult={finalResult} setFinalResult={setFinalResult} />
-          <Menu data={finalResult} />
+          <Menu data={getAllFood} />
         </section>
       </main>
     </>

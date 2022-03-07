@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
 import loggedReducer from "./isLogged";
 import cartCounter from "./cartCounter";
-import foodReducer from "./food";
+import { foodReducer, foodStateReducer } from "./food";
 
 const allReducers = combineReducers({
   cartCounter: cartCounter,
   isLogged: loggedReducer,
-  foodAll: foodReducer,
+  foodState: foodReducer,
 });
 
 export default allReducers;

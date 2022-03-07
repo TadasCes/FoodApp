@@ -1,16 +1,33 @@
-import { FaChevronLeft, FaChevronRight, FaSearch } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import React, { useEffect, useState } from "react";
-import Menu from "./Menu";
 import Categories from "./Categories";
-import items from "./data";
+import items from "../data";
+
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee, faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { useSelector, useDispatch } from "react-redux";
+import { resetCart, clearCart } from "../state/actions";
 
 const allCategories = ["all", ...new Set(items.map((item) => item.category))];
 
 const Navbar = ({ searchResults, setFinalResult }) => {
+  const dispatch = useDispatch();
+
   const [categories, setAllCategories] = useState(allCategories);
   const [showSearchbar, setShowSearchbar] = useState(false);
+  const [showCartCount, setShowCartCount] = useState(false);
+  const getCartCount = useSelector((state) => state.cartCounter);
+  const foodState = useSelector((state) => state.foodState);
+  const cartItems = foodState.foodInCart;
+
+  useEffect(() => {
+    cartItems.length > 0 ? setShowCartCount(true) : setShowCartCount(false);
+  });
+
+  const resetCartCount = () => {
+    dispatch(clearCart());
+  };
 
   const filterCategory = (category) => {
     if (category === "all") {
@@ -55,9 +72,17 @@ const Navbar = ({ searchResults, setFinalResult }) => {
           >
             <FaSearch />
           </button>
-          <button className="btn-icon">
-            <FontAwesomeIcon icon={faCartShopping} />
-          </button>
+          <Link to="/cart">
+            <button className="btn-icon">
+              <FontAwesomeIcon icon={faCartShopping} />
+            </button>
+          </Link>
+          {showCartCount && (
+            <div>
+              <h5>{cartItems.length}</h5>
+            </div>
+          )}
+          <button onClick={() => resetCartCount()}>reset</button>
         </div>
         <Categories categories={categories} filterCategory={filterCategory} />
       </nav>

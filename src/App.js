@@ -1,22 +1,17 @@
 import React, { useEffect, useState } from "react";
-import Menu from "./Menu";
-import Categories from "./Categories";
 import items from "./data";
 import Home from "./Home";
-import Error from "./Error";
-import Navbar from "./Navbar";
-import FoodInfo from "./FoodInfo";
+import Cart from "./checkout/Cart";
+import FoodInfo from "./food/FoodInfo";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { foodPopulate, decrement } from "./actions";
+import { foodPopulate, decrement } from "./state/actions";
 
 function App() {
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(foodPopulate(items));
   });
-
-  const [finalResult, setFinalResult] = useState(items);
-  const dispatch = useDispatch();
 
   return (
     <Router>
@@ -26,6 +21,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/food-info/:id" element={<FoodInfo />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </Router>
   );

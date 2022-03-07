@@ -1,15 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { foodPopulate, incrementCart } from "./actions";
+import { incrementCart, addFoodToCart } from "../state/actions";
 
-const MenuItem = ({ id, img, title, price, desc }) => {
+const MenuItem = (menuItem) => {
   const dispatch = useDispatch();
+  const { id, img, title, price, desc } = menuItem;
 
   const getCartNumber = useSelector((state) => state.cartCounter);
 
   const addToCart = () => {
     dispatch(incrementCart());
+    dispatch(addFoodToCart(menuItem));
   };
 
   return (

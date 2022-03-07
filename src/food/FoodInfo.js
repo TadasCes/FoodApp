@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 
 const FoodInfo = () => {
-  const getAllFood = useSelector((state) => state.foodAll);
+  const getAllFood = useSelector((state) => state.foodState);
   const { id } = useParams();
   const currentFood = getAllFood[id - 1];
 

@@ -1,6 +1,4 @@
 import React from "react";
-import { useState } from "react";
-import { FaChevronLeft, FaChevronRight, FaQuoteRight } from "react-icons/fa";
 
 const Categories = ({ categories, filterCategory }) => {
   return (
