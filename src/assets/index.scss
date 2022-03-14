@@ -1,0 +1,388 @@
+@use "_variables.scss";
+
+/*
+=============== 
+Variables
+===============
+*/
+
+/*
+=============== 
+Global Styles
+===============
+*/
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background: variables.$clr-grey-10;
+  color: variables.$clr-grey-1;
+  line-height: 1.5;
+  font-size: 0.875rem;
+}
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: variables.$spacing;
+  text-transform: capitalize;
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+}
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.25rem;
+}
+h4 {
+  font-size: 0.875rem;
+}
+p {
+  margin-bottom: 1.25rem;
+  color: variables.$clr-grey-5;
+}
+
+/*  global classes */
+
+/* section */
+.section {
+  width: 90vw;
+  margin: 0 auto;
+  max-width: variables.$max-width;
+}
+
+@media screen and (min-width: 992px) {
+  .section {
+    width: 95vw;
+  }
+}
+
+/*
+=============== 
+Heading
+===============
+*/
+
+.menu {
+  padding: 5rem 0;
+}
+.title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.underline {
+  width: 5rem;
+  height: 0.25rem;
+  background: variables.$clr-gold;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*
+=============== 
+Categories
+===============
+*/
+
+.btn-container {
+  margin-bottom: 4rem;
+  display: flex;
+  justify-content: center;
+}
+.filter-btn {
+  background: transparent;
+  border-color: transparent;
+  font-size: 1rem;
+  text-transform: capitalize;
+  margin: 0 0.5rem;
+  letter-spacing: 1px;
+  padding: 0.375rem 0.75rem;
+  color: variables.$clr-gold;
+  cursor: pointer;
+  transition: variables.$transition;
+  border-radius: variables.$radius;
+}
+.filter-btn:hover {
+  background: variables.$clr-gold;
+  color: variables.$clr-white;
+}
+
+/*
+=============== 
+Navbar
+===============
+*/
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+
+  .nav-controls {
+    display: flex;
+  }
+
+  .cart-icon {
+    display: flex;
+
+    .cart-icon-count {
+      display: flex;
+      position: relative;
+      left: -15px;
+      border-radius: 100%;
+      width: 15px;
+      height: 15px;
+      text-align: center;
+      align-items: center;
+      padding: 0.8rem 0.8rem 0.8rem 0.7rem;
+      background-color: rgb(255, 148, 148);
+    }
+  }
+}
+
+.nav svg {
+  margin: 1rem;
+  font-size: 20px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar input {
+  padding: 0.4rem;
+  border: 1px solid variables.$clr-gold;
+  transition: all 1s;
+}
+
+.search-bar input:focus {
+  border: 2px solid variables.$clr-gold;
+}
+
+.btn-icon {
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+/*
+=============== 
+Menu section
+===============
+*/
+
+.section-center {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr;
+  width: 90vw;
+  margin: 0 auto;
+  max-width: 1170px;
+  gap: 3rem 2rem;
+  justify-items: center;
+}
+
+.container-center {
+  margin: 0 auto;
+  max-width: 1170px;
+  width: 70vw;
+}
+
+.menu-item {
+  display: grid;
+  gap: 1rem 2rem;
+  max-width: 25rem;
+  transition: all 0.2s ease-in-out;
+  background-color: rgb(239, 240, 241);
+  border-radius: 10%;
+  box-shadow: variables.$light-shadow;
+  padding: 25px;
+}
+.menu-item:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.photo {
+  object-fit: cover;
+  height: 200px;
+  width: 300px;
+  border: 0.25rem solid variables.$clr-gold;
+  border-radius: variables.$radius;
+  display: block;
+}
+.item-info header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 0.5px dotted variables.$clr-grey-5;
+}
+.item-info h4 {
+  margin-bottom: 0.5rem;
+}
+.price {
+  color: variables.$clr-gold;
+}
+.item-text {
+  margin-bottom: 0;
+  padding-top: 1rem;
+}
+
+.btn {
+  width: 65px;
+  height: 35px;
+  margin: 1rem 1rem 0 0;
+  padding: 0.1rem 0.5rem;
+  border-radius: 10%;
+  border: none;
+  background-color: variables.$clr-grey-6;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: variables.$clr-primary-5;
+}
+
+/*
+=============== 
+Cart 
+===============
+*/
+
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: repeat(autofit, 1fr) 2fr;
+  /* grid-auto-rows: minmax(150px, auto; */
+  grid-auto-rows: auto 1fr auto;
+  grid-gap: 20px;
+  grid-row: 1;
+}
+
+.cart-grid-wrapper {
+  margin-top: 200px;
+  margin: 0 auto;
+  width: 70%;
+}
+
+.grid-item {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  font-size: 1em;
+  // background-color: #929ae0;
+}
+
+.grid-header {
+  grid-column-start: 1;
+  grid-column-end: 7;
+  // background-color: #b5bcf7;
+}
+
+.grid-heading {
+  display: block;
+  font-size: 20px;
+  width: 100%;
+  // background-color: #f7bdb5;
+}
+
+.grid-footer {
+  grid-column-start: 1;
+  grid-column-end: 6;
+  display: flex;
+  justify-content: space-between;
+  // background-color: #c971fc;
+}
+
+.cart-details {
+  grid-area: 1 / 6 / auto / 6;
+  grid-row-start: 2;
+  grid-row-end: 6;
+  grid-column-start: 6;
+  // background-color: #e4f4ff;
+  // border: 1px solid red;
+  border-radius: 5%;
+}
+
+.btn-cart-back {
+  display: inline-block;
+}
+
+.cart-total {
+  float: right;
+  margin-right: 4rem;
+}
+
+.cart-item-title {
+  font-size: 16px;
+  text-transform: capitalize;
+}
+
+.cart-item-count h5 {
+  display: inline-block;
+  padding: 1rem;
+}
+
+.cart-item-count button {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 50%;
+  border: none;
+  background-color: variables.$clr-gold;
+  color: variables.$clr-white;
+  cursor: pointer;
+}
+
+/*
+=============== 
+Media queries
+===============
+*/
+
+@media screen and (max-width: 768px) {
+  .cart-details {
+    grid-area: 6 / 5 / 6 / 7;
+    grid-row-start: 2;
+    grid-row-end: 6;
+    grid-column-start: 1;
+    background-color: #e4f4ff;
+    border: 1px solid red;
+    border-radius: 5%;
+    padding: 2rem 0 0 2rem;
+  }
+
+  .menu-item {
+    grid-template-columns: 225px 1fr;
+    gap: 0 1.25rem;
+    max-width: 40rem;
+  }
+  .photo {
+    height: 175px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .section-center {
+    width: 95vw;
+    grid-template-columns: 1fr 1fr;
+  }
+  .photo {
+    height: 150px;
+  }
+}

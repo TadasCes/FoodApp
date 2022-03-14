@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import items from "./data";
 import Home from "./Home";
-import Cart from "./checkout/Cart";
-import FoodInfo from "./food/FoodInfo";
+import Cart from "./components/checkout/Cart";
+import FoodInfo from "./components/food/FoodInfo";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { foodPopulate, decrement } from "./state/actions";
+import { useDispatch } from "react-redux";
+import { foodPopulate } from "./state/actions";
 
 function App() {
   const dispatch = useDispatch();

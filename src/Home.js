@@ -1,24 +1,19 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import Menu from "./food/Menu";
+import Menu from "./components/food/Menu";
 import items from "./data";
-import Navbar from "./navbar/Navbar";
-import { useEffect } from "react";
+import Navbar from "./components/navbar/Navbar";
 
 function Home() {
-  const [finalResult, setFinalResult] = useState([]);
-  const getAllFood = useSelector((state) => state.foodState);
-
   return (
     <>
       <main className="section">
+        <Navbar />
         <section className="menu section">
           <div className="title">
             <h2>our menu</h2>
             <div className="underline"></div>
           </div>
-          <Navbar finalResult={finalResult} setFinalResult={setFinalResult} />
-          <Menu data={getAllFood} />
+          <Menu />
         </section>
       </main>
     </>
