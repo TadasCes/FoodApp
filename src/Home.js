@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Menu from "./components/food/Menu";
 import items from "./data";
 import Navbar from "./components/navbar/Navbar";
+import CategoryMenu from "./components/food/CategoryMenu";
 
 function Home() {
   return (
@@ -13,7 +14,7 @@ function Home() {
             <h2>our menu</h2>
             <div className="underline"></div>
           </div>
-          <Menu />
+          <CategoryMenu />
         </section>
       </main>
     </>

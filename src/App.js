@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import items from "./data";
 import Home from "./Home";
+import Menu from "./components/food/Menu";
 import Cart from "./components/checkout/Cart";
 import FoodInfo from "./components/food/FoodInfo";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -20,7 +21,8 @@ function App() {
       </div> */}
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/food-info/:id" element={<FoodInfo />} />
+        <Route path="/menu/:category" element={<Menu />} />
+        <Route path="/menu/:category/food-info/:id" element={<FoodInfo />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
     </Router>

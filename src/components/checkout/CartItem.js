@@ -4,16 +4,18 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   decreaseCartItemCount,
   increaseCartItemCount,
+  removeCartItem,
 } from "../../state/actions";
 
-const CartItem = ({ count, dish }) => {
+const CartItem = ({ dishId, deleteCartItem }) => {
+  const dispatch = useDispatch();
+
   const [itemCount, setItemCount] = useState(0);
   const getFoodState = useSelector((state) => state.foodState);
   const currentFood = getFoodState.foodInCart.filter(
-    (item) => item.dish === dish
+    (item) => item.dish.id === dishId
   );
-  const dispatch = useDispatch();
-  const { id, img, title, price, desc } = dish;
+  const { id, img, title, price } = currentFood[0].dish;
 
   // setItemcount(count);
 
@@ -24,11 +26,14 @@ const CartItem = ({ count, dish }) => {
   };
   const decreaseCartItem = () => {
     dispatch(decreaseCartItemCount(id));
-
+    // if (currentFood[0].count === 0) {
+    //   dispatch(removeCartItem(id));
+    // }
+    deleteCartItem(id);
     setItemCount(currentFood);
   };
 
-  return (
+  return currentFood !== null ? (
     <>
       <div className="grid-item cart-grid-item-1">
         <img src={img} alt="" className="photo" />
@@ -48,6 +53,8 @@ const CartItem = ({ count, dish }) => {
         €{price * currentFood[0].count}
       </div>
     </>
+  ) : (
+    console.log("nera")
   );
 };
 

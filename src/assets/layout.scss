@@ -1,15 +1,16 @@
 @use "_variables.scss";
 
 .food-info-grid {
+  margin: 50px 0;
   display: grid;
-  grid-template-columns: 2fr auto;
+  grid-template-columns: auto 2fr;
   grid-template-rows: 1fr 1fr 1fr 2fr;
   grid-gap: 10px;
   grid-template-areas:
     "food-info-image food-info-header"
     "food-info-image food-info-category"
     "food-info-image food-info-price"
-    "food-info-footer food-info-footer";
+    "food-info-description food-info-description";
 
   background-color: rgb(240, 240, 240);
   padding: 24px;
@@ -19,6 +20,7 @@
 
 .food-info-header {
   grid-area: food-info-header;
+  text-align: center;
 }
 
 .food-info-image {
@@ -33,6 +35,8 @@
   min-width: 100px;
   object-fit: cover;
   width: 100%;
+  max-height: 400px;
+  max-width: 7000px;
   display: block;
 }
 
@@ -48,8 +52,16 @@
 }
 
 .food-info-description {
-  grid-area: food-info-footer;
+  grid-area: food-info-description;
   grid-row-start: 4;
   grid-column: 1/3;
   width: 100%;
+}
+
+.food-info-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 50px;
+  grid-row-start: 5;
+  grid-column: 1/3;
 }

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-
 import { useSelector } from "react-redux";
 import SearchBar from "./SearchBar";
 import CartIcon from "./CartIcon";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [showCartCount, setShowCartCount] = useState(false);
@@ -17,19 +17,16 @@ const Navbar = () => {
     <>
       <nav className="navbar">
         <div className="nav">
-          <div>
-            <h2>Logo</h2>
-          </div>
+          <Link to="/">
+            <div>
+              <h2>Logo</h2>
+            </div>
+          </Link>
           <div className="nav-controls">
             <SearchBar />
             <CartIcon />
           </div>
         </div>
-
-        {/* <Categories
-          categories={allCategories}
-          filterCategory={filterCategory}
-        /> */}
       </nav>
     </>
   );

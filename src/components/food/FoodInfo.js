@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import BackButton from "../utility/BackButton";
 import { incrementCart, addFoodToCart } from "../../state/actions";
+import Popup from "../Popup";
 
 const FoodInfo = () => {
+  const [buttonPopup, setButtonPopup] = useState(false);
+
   const dispatch = useDispatch();
 
   const getFoodState = useSelector((state) => state.foodState);
   const { id } = useParams();
   const currentFood = getFoodState.foodAll[id - 1];
-  console.log(currentFood.img);
 
   const addToCart = () => {
     dispatch(incrementCart());
     dispatch(addFoodToCart(currentFood));
+    setButtonPopup(true);
   };
 
   return (
@@ -35,14 +38,22 @@ const FoodInfo = () => {
             <h4>Price: </h4>
             <h4>{currentFood.price}</h4>
           </div>
-          <div className="food-info-description" id="food-info-footer">
+          <div className="food-info-description" id="food-info-description">
             <h3>Description</h3>
             <p>{currentFood.desc}</p>
           </div>
-          <BackButton />
-          <button className="btn btn-primary" onClick={() => addToCart(id)}>
-            Order
-          </button>
+          <div className="food-info-footer" id="food-info-footer">
+            <BackButton to={`./menu/${currentFood.category}`} />
+            <button className="btn btn-primary" onClick={() => addToCart(id)}>
+              Order
+            </button>
+          </div>
+          <Popup
+            trigger={buttonPopup}
+            text="Food added to cart successfully!"
+            setTrigger={setButtonPopup}
+            isYesNoBtn={false}
+          ></Popup>
         </div>
       </div>
     </>

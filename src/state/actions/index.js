@@ -44,6 +44,12 @@ export const decreaseCartItemCount = (id) => {
     payload: id,
   };
 };
+export const removeCartItem = (id) => {
+  return {
+    type: "REMOVE_CART_ITEM",
+    payload: id,
+  };
+};
 
 export const clearCart = () => {
   return {

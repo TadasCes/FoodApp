@@ -16,7 +16,7 @@ const MenuItem = (menuItem) => {
 
   return (
     <>
-      <Link to={`/food-info/${id}`}>
+      <Link to={`/menu/${menuItem.category}/food-info/${id}`}>
         <article key={id} className="menu-item">
           <img src={img} alt="" className="photo" />
           <div className="item-info">

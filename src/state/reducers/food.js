@@ -2,7 +2,6 @@ const initialState = {
   foodAll: [],
   foodShown: [],
   foodInCart: [],
-  // foodInCart: [{ dish: Object, count: Number }],
 };
 
 function findFoodInArray(state, id) {
@@ -21,11 +20,12 @@ function findFoodInArray(state, id) {
   }
 }
 
+let foodInArray = {};
 export const foodReducer = (state = initialState, action) => {
-  let foodInArray = {};
   switch (action.type) {
     case "POPULATE":
       // return (state = initialState);
+      console.log(state);
       return {
         ...state,
         foodShown: action.payload,
@@ -52,7 +52,7 @@ export const foodReducer = (state = initialState, action) => {
       };
 
     case "GET_CART_ITEMS":
-      return state;
+      return { ...state };
 
     case "GET_ITEM_COUNT":
       foodInArray = findFoodInArray(state, action.payload);
@@ -61,45 +61,30 @@ export const foodReducer = (state = initialState, action) => {
     case "INCREASE_CART_ITEM_COUNT":
       foodInArray = findFoodInArray(state, action.payload);
       foodInArray.count++;
-      return state;
+      return { ...state };
 
     case "DECREASE_CART_ITEM_COUNT":
       foodInArray = findFoodInArray(state, action.payload);
+      if (foodInArray.count <= 1) {
+        state.foodInCart.splice(state.foodInCart.indexOf(foodInArray), 1);
+        return { ...state };
+      }
+
       foodInArray.count--;
       // console.log(foodInArray.count);
-      return state;
+      return { ...state };
+
+    case "REMOVE_CART_ITEM":
+      // foodInArray = findFoodInArray(state, action.payload.id);
+      // console.log(foodInArray);
+      state.foodInCart.splice(action.payload.id, 1);
+      return { ...state };
 
     case "CLEAR_CART":
       console.log(state.foodInCart);
       return {
         ...state,
         foodInCart: (state.foodInCart = []),
-      };
-    default:
-      return state;
-  }
-};
-
-export const foodStateReducer = (state = initialState.foodInCart, action) => {
-  switch (action.type) {
-    case "ADD_TO_CART":
-      state = [];
-      return {
-        ...state,
-        foodInCart: [
-          ...state.foodInCart,
-          {
-            foodInCart: state.foodInCart.push(action.payload),
-          },
-        ],
-      };
-    case "GET_CART_ITEMS":
-      return state;
-    case "CLEAER_CART":
-      console.log(state.foodInCart);
-      return {
-        ...state,
-        foodInCart: [],
       };
     default:
       return state;
