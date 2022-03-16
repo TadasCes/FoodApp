@@ -13,7 +13,7 @@ function Popup(props) {
         <h3>{props.text}</h3>
         {!props.isYesNoBtn ? (
           <div>
-            <Link to="/">
+            <Link to="/menu">
               <button
                 className="btn btn-secondary"
                 onClick={() => props.setTrigger(false)}

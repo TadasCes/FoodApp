@@ -15,7 +15,11 @@ const CartIcon = () => {
   const [cartItems, setCartItems] = useState(foodState.foodInCart);
 
   useEffect(() => {
-    setCountTotal(getCartCount(cartItems));
+    let total = 0;
+    cartItems.forEach((element) => {
+      total += element.count;
+    });
+    setCountTotal(total);
     cartItems.length > 0 ? setShowCartCount(true) : setShowCartCount(false);
   });
 

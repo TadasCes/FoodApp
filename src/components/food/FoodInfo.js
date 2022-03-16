@@ -44,7 +44,7 @@ const FoodInfo = () => {
             <p>{currentFood.desc}</p>
           </div>
           <div className="food-info-footer" id="food-info-footer">
-            <BackButton to={`./menu/${currentFood.category}`} />
+            <BackButton to={`/menu/${currentFood.category}`} />
             <button className="btn btn-primary" onClick={() => addToCart(id)}>
               Order
             </button>

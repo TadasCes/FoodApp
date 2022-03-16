@@ -24,7 +24,7 @@ const Menu = ({ data }) => {
     <>
       <main className="section">
         <section className="menu section">
-          <BackButton to={""} />
+          <BackButton to={"/menu"} />
           <div className="title">
             <h2>{category}</h2>
             <div className="underline"></div>

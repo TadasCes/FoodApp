@@ -60,7 +60,7 @@ const Cart = () => {
           })}
 
           <footer className="grid-footer">
-            <BackBtn to={""} />
+            <BackBtn to={"/menu"} />
             <div className="cart-total">
               <h3 className="">Total</h3>
               <h4 className="">{cartTotalPrice}</h4>
@@ -71,7 +71,7 @@ const Cart = () => {
     </>
   ) : (
     <div>
-      <BackBtn to={""} />
+      <BackBtn to={"/menu"} />
       <h3>Cart is empty</h3>
     </div>
   );
