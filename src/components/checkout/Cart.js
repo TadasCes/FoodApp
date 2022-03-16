@@ -12,13 +12,15 @@ const Cart = () => {
   const cartState = useSelector((state) => state.foodState.foodInCart);
   const [cartItems, setCartItems] = useState([]);
 
-  useEffect(() => {
+  useEffect(() => {});
+
+  const getCartTotalPrice = () => {
     let total = 0;
     cartItems.forEach((element) => {
-      total += element.dish.price;
-      setCartTotalPrice(Math.round(total * 100) / 100);
+      total += element.dish.price * element.count;
     });
-  }, [cartItems, cartTotalPrice]);
+    return Math.round(total * 100) / 100;
+  };
 
   useEffect(() => {
     updateCartState();
@@ -26,17 +28,18 @@ const Cart = () => {
 
   const updateCartState = () => {
     setCartItems(cartState);
+    setCartTotalPrice(getCartTotalPrice());
   };
 
   const deleteCartItem = (id) => {
     setCartItems(cartItems.filter((item) => item.id !== id));
-    // updateCartState();
+    updateCartState();
   };
 
   return cartState.length > 0 ? (
     <>
       <section className="cart-container">
-        <div className="grid-wrapper cart-grid-wrapper">
+        <div className="cart-grid-wrapper">
           <div className="grid-header">
             <h2>Your cart items</h2>
           </div>
@@ -51,6 +54,7 @@ const Cart = () => {
                 key={item.dish.id}
                 dishId={item.dish.id}
                 deleteCartItem={deleteCartItem}
+                updateCartState={updateCartState}
               />
             );
           })}

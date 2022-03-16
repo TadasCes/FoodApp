@@ -4,13 +4,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { incrementCart, addFoodToCart } from "../../state/actions";
 
 const CategoryItem = ({ category }) => {
-  const dispatch = useDispatch();
+  const { img, title } = category;
 
   return (
     <>
-      <Link to={`/menu/${category}`}>
-        <article className="menu-item">
-          <h4>{category}</h4>
+      <Link to={`/menu/${title}`}>
+        <article className="category-item">
+          <img src={img} alt="" className="category-photo" />
+          <h4>{title}</h4>
         </article>
       </Link>
     </>

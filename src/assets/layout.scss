@@ -3,58 +3,63 @@
 .food-info-grid {
   margin: 50px 0;
   display: grid;
-  grid-template-columns: auto 2fr;
-  grid-template-rows: 1fr 1fr 1fr 2fr;
+  grid-template-columns: auto;
+  grid-template-rows: auto 1fr 1fr;
   grid-gap: 10px;
   grid-template-areas:
-    "food-info-image food-info-header"
-    "food-info-image food-info-category"
-    "food-info-image food-info-price"
-    "food-info-description food-info-description";
+    "food-info-image  "
+    "food-info-header"
+    "food-info-category"
+    "food-info-description ";
 
   background-color: rgb(240, 240, 240);
   padding: 24px;
-  border-radius: 30px;
+  border-radius: variables.$radius;
   box-shadow: variables.$light-shadow;
 }
 
 .food-info-header {
   grid-area: food-info-header;
-  text-align: center;
+  text-align: start;
 }
 
 .food-info-image {
   grid-area: food-info-image;
-  grid-row: 1/4;
-  grid-column-start: 1;
+  grid-row: 1/2;
   background-color: rgb(240, 240, 240);
   display: flex;
 }
 
 .food-info-photo {
-  min-width: 100px;
+  min-width: 200px;
   object-fit: cover;
   width: 100%;
-  max-height: 400px;
-  max-width: 7000px;
+  max-height: 300px;
+  max-width: 100%;
   display: block;
 }
 
 .food-info-category {
   grid-area: food-info-category;
   display: flex;
-  justify-content: space-around;
+  text-align: start;
+  justify-content: start;
+  h4 {
+    padding-right: 20px;
+  }
 }
 .food-info-price {
   grid-area: food-info-price;
   display: flex;
-  justify-content: space-around;
+  justify-content: start;
+  h4 {
+    padding-right: 20px;
+  }
 }
 
 .food-info-description {
   grid-area: food-info-description;
-  grid-row-start: 4;
-  grid-column: 1/3;
+  grid-row-start: 5;
   width: 100%;
 }
 
@@ -62,6 +67,5 @@
   display: flex;
   justify-content: space-between;
   padding: 0 50px;
-  grid-row-start: 5;
-  grid-column: 1/3;
+  grid-row-start: 6;
 }

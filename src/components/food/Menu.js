@@ -4,10 +4,12 @@ import MenuItem from "./MenuItem";
 import { useSelector } from "react-redux";
 import Navbar from "../navbar/Navbar";
 import { Link } from "react-router-dom";
+import BackButton from "../utility/BackButton";
 
 const Menu = ({ data }) => {
   const shownFood = useSelector((state) => state.foodState.foodShown);
   const { category } = useParams();
+
   const [filteredFood, setFilteredFood] = useState(() => {
     let filteredArray = [];
     shownFood.forEach((element) => {
@@ -18,23 +20,13 @@ const Menu = ({ data }) => {
     return filteredArray;
   });
 
-  // useLayoutEffect(() => {
-  //   shownFood.forEach((element) => {
-  //     if (element.category === category) {
-  //       filteredFood.push(element);
-  //     }
-  //   });
-  //   setFilteredFood(filteredFood);
-  //   console.log(filteredFood);
-  // });
-
   return (
     <>
       <main className="section">
-        <Navbar />
         <section className="menu section">
+          <BackButton to={""} />
           <div className="title">
-            <h2>{category} menu</h2>
+            <h2>{category}</h2>
             <div className="underline"></div>
           </div>
           <div className="grid-wrapper">

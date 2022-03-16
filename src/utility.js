@@ -1,6 +1,7 @@
-export function getArrayElements() {
-  foodState.foodInCart.forEach((element) => {
+export function getCartCount(array) {
+  let total = 0;
+  array.forEach((element) => {
     total += element.count;
-    setCountTotal(total);
   });
+  return total;
 }

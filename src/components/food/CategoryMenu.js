@@ -2,28 +2,18 @@ import React, { useState } from "react";
 import MenuItem from "./MenuItem";
 import { useSelector } from "react-redux";
 import CategoryItem from "./CategoryItem";
+import Categories from "../../data/categoryData";
 
 const CategoryMenu = ({ data }) => {
   const foodAll = useSelector((state) => state.foodState.foodAll);
-  const [foodCategories, setFoodCategories] = useState([]);
-  let categories = [...new Set([])];
-
-  const getCategories = () => {
-    foodAll.forEach((element) => {
-      if (categories.indexOf(element.category) === -1) {
-        categories.push(element.category);
-      }
-    });
-  };
-
-  getCategories();
+  const [foodCategories, setFoodCategories] = useState(Categories);
 
   return (
     <>
       <section className="section-center">
         {(foodAll == undefined || null) && <h4>Error</h4>}
-        {categories.map((category) => {
-          return <CategoryItem category={category} />;
+        {foodCategories.map((element) => {
+          return <CategoryItem key={element.id} category={element} />;
         })}
       </section>
     </>

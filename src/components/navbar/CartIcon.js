@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { clearCart } from "../../state/actions";
 import IconButton from "../utility/IconButton";
 import { FaShoppingCart } from "react-icons/fa";
+import { getCartCount } from "../../utility";
 
 const CartIcon = () => {
   const dispatch = useDispatch();
@@ -11,30 +12,12 @@ const CartIcon = () => {
   const [countTotal, setCountTotal] = useState(0);
   const [showCartCount, setShowCartCount] = useState(false);
   const foodState = useSelector((state) => state.foodState);
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(foodState.foodInCart);
 
   useEffect(() => {
-    setCartItems(foodState.foodInCart);
-    let total = 0;
-    if (cartItems !== undefined) {
-      cartItems.forEach((element) => {
-        total += element.count;
-        setCountTotal(total);
-      });
-    }
-
+    setCountTotal(getCartCount(cartItems));
     cartItems.length > 0 ? setShowCartCount(true) : setShowCartCount(false);
   });
-
-  const getCartCount = () => {
-    let countTotal = 0;
-    if (cartItems !== undefined) {
-      cartItems.forEach((element) => {
-        countTotal += element.count;
-      });
-    }
-  };
-  getCartCount();
 
   const resetCartCount = () => {
     dispatch(clearCart());

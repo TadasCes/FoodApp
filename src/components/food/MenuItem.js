@@ -21,8 +21,8 @@ const MenuItem = (menuItem) => {
           <img src={img} alt="" className="photo" />
           <div className="item-info">
             <header>
-              <h4>{title}</h4>
-              <h4 className="price">{price}</h4>
+              <h4 className="price">€{price}</h4>
+              <h3>{title}</h3>
             </header>
           </div>
         </article>

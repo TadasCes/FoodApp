@@ -6,9 +6,8 @@ import { incrementCart, addFoodToCart } from "../../state/actions";
 import Popup from "../Popup";
 
 const FoodInfo = () => {
-  const [buttonPopup, setButtonPopup] = useState(false);
-
   const dispatch = useDispatch();
+  const [buttonPopup, setButtonPopup] = useState(false);
 
   const getFoodState = useSelector((state) => state.foodState);
   const { id } = useParams();
@@ -30,13 +29,15 @@ const FoodInfo = () => {
           <div className="food-info-header" id="food-info-header">
             <h2>{currentFood.title}</h2>
           </div>
-          <div className="food-info-category" id="food-info-category">
-            <h4>Category: </h4>
-            <h4>{currentFood.category}</h4>
-          </div>
-          <div className="food-info-price" id="food-info-price">
-            <h4>Price: </h4>
-            <h4>{currentFood.price}</h4>
+          <div id="food-info-category">
+            <div className="food-info-category">
+              <h4>Category: </h4>
+              <h4>{currentFood.category}</h4>
+            </div>
+            <div className="food-info-price" id="food-info-price">
+              <h4>Price: </h4>
+              <h4>€{currentFood.price}</h4>
+            </div>
           </div>
           <div className="food-info-description" id="food-info-description">
             <h3>Description</h3>

@@ -7,13 +7,10 @@ import { filterFoodShown } from "../../state/actions";
 import IconButton from "../utility/IconButton";
 
 const Navbar = ({ searchResults, setFinalResult }) => {
-  const getFoodState = useSelector((state) => state.foodState);
-  const [items, setItems] = useState(getFoodState.foodAll);
   const dispatch = useDispatch();
-
+  const getFoodState = useSelector((state) => state.foodState);
   const [showSearchbar, setShowSearchbar] = useState(false);
-  const foodState = useSelector((state) => state.foodState);
-  const cartItems = foodState.foodInCart;
+  const [items, setItems] = useState(getFoodState.foodAll);
 
   const searchItem = (searchTerm) => {
     if (searchTerm == "") {
@@ -22,7 +19,6 @@ const Navbar = ({ searchResults, setFinalResult }) => {
       const foodToShow = items.filter((item) =>
         item.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
-      console.log(foodToShow);
 
       dispatch(filterFoodShown(foodToShow));
     }

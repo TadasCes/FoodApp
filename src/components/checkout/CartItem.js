@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import {
@@ -7,30 +8,36 @@ import {
   removeCartItem,
 } from "../../state/actions";
 
-const CartItem = ({ dishId, deleteCartItem }) => {
+const CartItem = ({ dishId, deleteCartItem, updateCartState }) => {
   const dispatch = useDispatch();
+  const [state, setState] = useState({ totalPrice: 0 });
 
-  const [itemCount, setItemCount] = useState(0);
   const getFoodState = useSelector((state) => state.foodState);
   const currentFood = getFoodState.foodInCart.filter(
     (item) => item.dish.id === dishId
   );
   const { id, img, title, price } = currentFood[0].dish;
+  const currentFoodCount = currentFood[0].count;
+  const [itemCount, setItemCount] = useState(currentFoodCount);
+
+  // useEffect(() => {
+  //   setState({ totalPrice: price * itemCount });
+  // }, []);
 
   // setItemcount(count);
+  // console.log(state.totalPrice);
 
   const increaseCartItem = () => {
     dispatch(increaseCartItemCount(id));
 
-    setItemCount(currentFood);
+    setItemCount(currentFoodCount);
+    updateCartState();
   };
   const decreaseCartItem = () => {
     dispatch(decreaseCartItemCount(id));
-    // if (currentFood[0].count === 0) {
-    //   dispatch(removeCartItem(id));
-    // }
     deleteCartItem(id);
-    setItemCount(currentFood);
+    setItemCount(currentFoodCount);
+    updateCartState();
   };
 
   return currentFood !== null ? (
@@ -44,14 +51,12 @@ const CartItem = ({ dishId, deleteCartItem }) => {
       <div className="grid-item cart-grid-item-3">
         <div className="cart-item-count">
           <button onClick={() => decreaseCartItem()}>-</button>
-          <h5>{currentFood[0].count}</h5>
+          <h5>{currentFoodCount}</h5>
           <button onClick={() => increaseCartItem()}>+</button>
         </div>
       </div>
       <div className="grid-item cart-grid-item-4">€{price}</div>
-      <div className="grid-item cart-grid-item-4">
-        €{price * currentFood[0].count}
-      </div>
+      <div className="grid-item cart-grid-item-4">€{state.totalPrice}</div>
     </>
   ) : (
     console.log("nera")
